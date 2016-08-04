@@ -20,4 +20,6 @@
 
 + (void)showMessage:(NSString *)msg;
 
++ (void)showLoading:(NSString *)msg success:(NSString *)success icon:(NSString *)icon;
+
 @end
