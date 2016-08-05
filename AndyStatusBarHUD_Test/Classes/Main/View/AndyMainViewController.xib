@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -10,6 +10,7 @@
                 <outlet property="hideBtn" destination="ysA-ak-XuU" id="15x-qn-CG6"/>
                 <outlet property="showFailureBtn" destination="wUx-WL-ews" id="hha-SV-XTi"/>
                 <outlet property="showLoadingBtn" destination="Rza-Z6-cXo" id="BHW-hu-aJx"/>
+                <outlet property="showLoadingSuccessBtn" destination="tbv-Dx-rHE" id="RCR-Bh-3Wl"/>
                 <outlet property="showMessageBtn" destination="kMh-Kk-eH9" id="kWS-KK-add"/>
                 <outlet property="showSuccessBtn" destination="37N-tY-4hw" id="fFH-w6-J0l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -58,6 +59,14 @@
                     <state key="normal" title="显示正在加载"/>
                     <connections>
                         <action selector="btnShowLoading:" destination="-1" eventType="touchUpInside" id="xD5-Xa-Bb4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tbv-Dx-rHE">
+                    <rect key="frame" x="49" y="426" width="223" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="显示正在加载,2秒后显示刷新成功"/>
+                    <connections>
+                        <action selector="btnShowLoadingSuccess:" destination="-1" eventType="touchUpInside" id="2bN-Ul-5a4"/>
                     </connections>
                 </button>
             </subviews>

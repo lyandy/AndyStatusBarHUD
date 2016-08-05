@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *showLoadingBtn;
 @property (weak, nonatomic) IBOutlet UIButton *hideBtn;
 @property (weak, nonatomic) IBOutlet UIButton *showMessageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *showLoadingSuccessBtn;
 @end
 
 @implementation AndyMainViewController
@@ -53,6 +54,11 @@
         make.centerX.equalTo(self.showSuccessBtn.centerX);
         make.top.equalTo(self.hideBtn.bottom).offset(commonVerticalMargin);
     }];
+    
+    [self.showLoadingSuccessBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.showMessageBtn.centerX);
+        make.top.equalTo(self.showMessageBtn.bottom).offset(commonVerticalMargin);
+    }];
 }
 
 - (IBAction)btnShowSuccess:(UIButton *)sender
@@ -78,6 +84,11 @@
 - (IBAction)btnShowMessage:(UIButton *)sender
 {
     [AndyStatusBarHUD showMessage:@"显示消息"];
+}
+
+- (IBAction)btnShowLoadingSuccess:(id)sender
+{
+    [AndyStatusBarHUD showLoading:@"正在加载" success:@"刷新成功" icon:@"AndyStatusBarHUD.bundle/success"];
 }
 
 - (void)didReceiveMemoryWarning {

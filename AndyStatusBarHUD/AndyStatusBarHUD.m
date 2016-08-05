@@ -120,5 +120,48 @@ static NSTimer *timer;
     }];
 }
 
++ (void)showLoading:(NSString *)msg success:(NSString *)success icon:(NSString *)icon
+{
+    // 停止定时器
+    [timer invalidate];
+    timer = nil;
+    
+    // 显示窗口
+    [self showWindow];
+    
+    // 添加文字
+    UILabel *label = [[UILabel alloc] init];
+    label.font = AndyMessageFont;
+    label.frame = window.bounds;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = msg;
+    label.textColor = [UIColor whiteColor];
+    [window addSubview:label];
+    
+    // 添加圈圈
+    UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [loadingView startAnimating];
+    // 文字宽度
+    CGFloat msgW = [msg sizeWithAttributes:@{NSFontAttributeName : AndyMessageFont}].width;
+    CGFloat centerX = (window.frame.size.width - msgW) * 0.5 - 20;
+    CGFloat centerY = window.frame.size.height * 0.5;
+    loadingView.center = CGPointMake(centerX, centerY);
+    [window addSubview:loadingView];
+    
+    // 2秒后显示刷新成功
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, AndyMessageDuration * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        loadingView.hidden = YES;
+        label.text = success;
+        
+        // 添加按钮
+        UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:icon]];
+        iconView.center = loadingView.center;
+        [window addSubview:iconView];
+        
+        // 定时器
+        timer = [NSTimer scheduledTimerWithTimeInterval:AndyMessageDuration target:self selector:@selector(hide) userInfo:nil repeats:NO];
+    });
+}
 
 @end
